@@ -1,16 +1,39 @@
 # swimlane_demo
 
-Checking differnt swimlane approaches
+Checking different swimlane approaches
 
-## Getting Started
+## iOS/VoiceOVer
 
-This project is a starting point for a Flutter application.
+As far as VoiceOver is concerned, I was not able to tell a difference between these. The layout
+differences are still present, but I will explain that later in the Layout Section. 
 
-A few resources to get you started if this is your first Flutter project:
+Everything scrolls as expected. VoiceOver does not try to scroll in the swimlanes to find the next heading,
+it just moves focus in the main scroll direction.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+There is no indication of how far along the swimlane the user is. 
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Android/TalkBack
+
+### Row
+
+TalkBack does not announce a "showing 1 to 3 of 10" style message by default.
+
+The earcons that are presented ar all the same pitch.
+
+### ListView/ListView.builder
+
+TalkBack does announce "showing 1 to 3 of 10" as well as ascending pitches for the earcons.
+
+## Layout
+
+Row builds its children before returning its size to its parent.  This means that it can calculate its size based on its children.
+Consequently, the height of the Row does not need to be specified in code, as it will shrink to is largest child.
+
+The ListViews return their size independent of their children. This means that we need to hardcode its height.
+
+This could cause problems if we are not sure of the size of the children ahead of time.  An instance of this might be
+when the user changes the system font size, the size of the children will change.
+
+## tl;dr
+
+Rows are less accessibility rich, but more predictable in layouts
