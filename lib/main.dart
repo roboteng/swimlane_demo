@@ -74,6 +74,28 @@ class Page extends StatelessWidget {
                   itemBuilder: (context, i) => SwimLaneCard(),
                 ),
               ),
+              Semantics(
+                header: true,
+                child: Text('Sliver'),
+              ),
+              SizedBox(
+                height: 116,
+                child: CustomScrollView(
+                  scrollDirection: Axis.horizontal,
+                  semanticChildCount: 10,
+                  slivers: [
+                    SliverPrototypeExtentList(
+                      prototypeItem: SwimLaneCard(),
+                      delegate: SliverChildListDelegate(
+                        List.generate(
+                          10,
+                          (index) => SwimLaneCard(),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

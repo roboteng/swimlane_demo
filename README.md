@@ -34,6 +34,8 @@ The ListViews return their size independent of their children. This means that w
 This could cause problems if we are not sure of the size of the children ahead of time.  An instance of this might be
 when the user changes the system font size, the size of the children will change.
 
+Using SliverPrototypeExtentList Seems to behave the same as a ListView, as long as semanticChildCount has been provided
+
 ## tl;dr
 
 Rows are less accessibility rich, but more predictable in layouts
